@@ -7,29 +7,30 @@ import { Chart } from "react-google-charts";
 function App() {
   return (
     <div className="App">
-      <div style={{ display: 'flex', maxWidth: 1900 }}>
+      <div style={{ display: 'flex', maxWidth: 1250 }}>
         <Chart
           width={1400}
           height={300}
           chartType="ColumnChart"
           loader={<div>Loading Chart</div>}
-          data={[
-            ['City', '2010 Population'],
-            ['New York City, NY', 8175000],
-            ['Los Angeles, CA', 3792000],
-            ['Chicago, IL', 2695000],
-            ['Houston, TX', 2099000],
-            ['Philadelphia, PA', 1526000],
-          ]}
+    data={[
+      ['%', '', ''],
+      ['', 25, 25.2],
+      ['', 25.5, 26],
+      ['', 26.2 , 26.5],
+      ['', 27, 27.2],
+      ['', 27.5, 28],
+    ]}
+  
           options={{
-            title: 'Population of Largest U.S. Cities',
+            title: 'Ilmankosteus',
             chartArea: { width: '30%' },
             hAxis: {
-              title: 'Total Population',
+              title: '',
               minValue: 0,
             },
             vAxis: {
-              title: 'City',
+              title: '',
             },
           }}
           legendToggle
@@ -39,18 +40,18 @@ function App() {
         <Chart
           width={400}
           height={'300px'}
-          chartType="AreaChart"
+          chartType="LineChart"
           loader={<div>Loading Chart</div>}
           data={[
-            ['Year', 'Sales', 'Expenses'],
-            ['2013', 1000, 400],
-            ['2014', 1170, 460],
-            ['2015', 660, 1120],
-            ['2016', 1030, 540],
+            ['', 'C', ''],
+            ['', 24.5, 25.8],
+            ['', 24.8, 26],
+            ['', 25, 26.6],
+            ['', 25.5, 27],
           ]}
           options={{
-            title: 'Company Performance',
-            hAxis: { title: 'Year', titleTextStyle: { color: '#333' } },
+            title: 'Lämpötila',
+            hAxis: { title: '', titleTextStyle: { color: '#555' } },
             vAxis: { minValue: 0 },
             // For the legend to fit, we make the chart area smaller
             chartArea: { width: '50%', height: '70%' },
