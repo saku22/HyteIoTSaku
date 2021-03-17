@@ -1,12 +1,29 @@
-import React from 'react';
-import './App.css';
-import { Chart } from "react-google-charts";
+import React,  {useState} from 'react'
+import './App.css'
+import { Chart } from "react-google-charts"
 
 
 
 function App() {
+
+  const initweather = [];
+
+  const [weather, setWeather] = useState(initweather);
+
+  fetch('https://oppilas-10.azurewebsites.net/api/HttpTriggerCSharp2?code=tYDuJTbUAGC3seAny8DOEduxbafwGmk5Gy2jdcKwPize8/X0JKgj1g==&deviceId=2f002a001947393035313138&amount=10')
+    .then(response => response.json())
+    .then(json => setWeather([...json]));
+
+  let humtempkey = 1;
+  const rows = () => weather.map(temphum => {
+  return <div key={humtempkey++}>
+    {temphum.Temp}
+  </div>
+  })
+
   return (
     <div className="App">
+      {rows()}
       <div style={{ display: 'flex'}}>
         <Chart
           width={1300}
