@@ -10,14 +10,46 @@ function App() {
 
   const [weather, setWeather] = useState(initweather);
 
+
+  function convertUTCDateToLocalDate(date) {
+  //var dateLocal = new Date(date);
+  new Date(date.getTime() + date.getTimezoneOffset()*60*1000);
+  return date;
+}
+
+let chartHumData = [
+  ['Aika', '%'],
+  ['Please wait...', 0]
+];
+
+let chartTempData = [
+  ['Aika', 'Asteet'],
+  ['Please wait...', 0]
+
+];
+
   fetch('https://oppilas-10.azurewebsites.net/api/HttpTriggerCSharp2?code=tYDuJTbUAGC3seAny8DOEduxbafwGmk5Gy2jdcKwPize8/X0JKgj1g==&deviceId=2f002a001947393035313138&amount=10')
     .then(response => response.json())
     .then(json => setWeather([...json]));
 
   let humtempkey = 1;
+
   const rows = () => weather.map(temphum => {
+
+    if(chartHumData[1][0] === 'Please wait...'){
+      chartHumData.pop();
+    }
+        if(chartTempData[1][0] === 'Please wait...'){
+      chartTempData.pop();
+      }
+
+  chartHumData.push([String(convertUTCDateToLocalDate(new Date(temphum.Timestamp))).split(' ')[4], parseInt(temphum.Hum)])
+  chartTempData.push([String(convertUTCDateToLocalDate(new Date(temphum.Timestamp))).split(' ')[4], parseInt(temphum.Temp)])
+
   return <div key={humtempkey++}>
-    {temphum.Temp}
+  <b> Klo: </b> {String(convertUTCDateToLocalDate(new Date(temphum.Timestamp))).split(' ')[4]} &nbsp;
+  <b> Ilmankosteus </b> {temphum.Hum} % &nbsp;
+  <b> Lämpötila </b>  {temphum.Temp} °C
   </div>
   })
 
@@ -30,27 +62,12 @@ function App() {
           height={300}
           chartType="ColumnChart"
           loader={<div>Loading Chart</div>}
-
-    data={[
-      ['Aika', '%'],
-      ['1.3.2021', 45],
-      ['2.3.2021', 47],
-      ['3.3.2021', 52],
-      ['4.3.2021', 47],
-      ['5.3.2021', 51],
-      ['6.3.2021', 45],
-      ['7.3.2021', 49],
-      ['8.3.2021', 44],
-      ['9.3.2021', 47],
-      ['10.3.2021', 55],
-    ]}
-  
+data={chartHumData}
           options={{
             title: 'Ilmankosteus',
             hAxis: {
               minValue: 0,
             },
-
           }}
           legendToggle
         />
@@ -61,19 +78,7 @@ function App() {
           height={300}
           chartType="LineChart"
           loader={<div>Loading Chart</div>}
-          data={[
-            ['Aika', 'Asteet'],
-            ['1.3', 45],
-            ['2.3', 51],
-            ['3.3', 39],
-            ['4.3', 46],
-            ['5.3', 45],
-            ['6.3', 54],
-            ['7.3', 42],
-            ['8.3', 46],
-            ['9.3', 54],
-            ['10.3', 48],
-          ]}
+          data={chartTempData}
           options={{
             title: 'Lämpötila',
             hAxis: { title: '', titleTextStyle: { color: '#555' } },
