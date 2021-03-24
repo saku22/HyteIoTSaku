@@ -4,7 +4,10 @@
 *Lyhyesti se tarkoittaa laitteiden yhdistämistä internettiin. IoT:lla voidaan myös tarkoittaa järjestelmiä, jotka perustuu teknisten laitteiden automatisoituun tiedonsiirtoon, sekä sitä suorittavien laitteiden etäohjaukseen.
 Esimerkiksi IoT kiinteistöhallinnassa: IoT mahdollistaa kiinteistön seurannan ja tarkkailun etänä. Kyseiset älykodit pystyvät myös lähettämään itsestään tietoa palveluille.*
 ## Sääasemajärjestelmän toimintakaavio
-*Particle Photon ja DHT sensori tuottavat dataa, joka tulee pilvipalvelun(Azuren) kautta HTML sivulle.*
+*-Anturi kerää jonkinlaista dataa.
+ -Tietoliikenne, millä data viedään pilvipalveluun.
+ -Pilvialustat mihin kerätty data laitetaan.
+ -Analytiikka, millä hyödynnetään kerättyä dataa tavalla tai toisella.*
 ![Toimintakaavio](toimintakaavio.png)
 ### Laitteistot
 
