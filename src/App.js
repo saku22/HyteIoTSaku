@@ -1,6 +1,10 @@
 import React,  {useState} from 'react'
 import './App.css'
 import { Chart } from "react-google-charts"
+import Header from './components/layout/Header';
+import Footer from './components/layout/Footer';
+import Portfolio from './components/Portfolio';
+import {BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 
 
@@ -54,17 +58,25 @@ let chartTempData = [
   })
 
   return (
+    <Router>
     <div className="App">
+    <Header />
+    <Switch>
+    <Route path="/portfolio">
+      <Portfolio />
+    </Route>
+    <Route>
       {rows()}
       <div style={{ display: 'flex'}}>
         <Chart
-          width={1300}
+          width={'100%'}
           height={300}
           chartType="ColumnChart"
           loader={<div>Loading Chart</div>}
 data={chartHumData}
           options={{
             title: 'Ilmankosteus',
+            chartArea: { width: '50%'},
             hAxis: {
               minValue: 0,
             },
@@ -72,25 +84,26 @@ data={chartHumData}
           legendToggle
         />
         </div>
-        <div style={{ display: 'flex', maxWidth: 900 }}>
+        <div className="App">
         <Chart
-          width={400}
+          width={'100%'}
           height={300}
           chartType="LineChart"
           loader={<div>Loading Chart</div>}
           data={chartTempData}
           options={{
             title: 'Lämpötila',
+            chartArea: { width: '50%'},
             hAxis: { title: '', titleTextStyle: { color: '#555' } },
-            vAxis: { minValue: 0 },
-            // For the legend to fit, we make the chart area smaller
-            // lineWidth: 25
-          }}
-        />
+            vAxis: { minValue: 0 }
+             }}
+          />
       </div>
-
-    </div>
+      </Route>
+      </Switch>
+    <Footer />
+  </div>
+  </Router>
   );
 }
-
 export default App;

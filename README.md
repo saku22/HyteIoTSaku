@@ -8,7 +8,7 @@ Esimerkiksi IoT kiinteistöhallinnassa: IoT mahdollistaa kiinteistön seurannan 
  -Tietoliikenne, millä data viedään pilvipalveluun.
  -Pilvialustat mihin kerätty data laitetaan.
  -Analytiikka, millä hyödynnetään kerättyä dataa tavalla tai toisella.*
-![Toimintakaavio](toimintakaavio.png)
+![Kaavio](public/toimintakaavio.png)
 ### Laitteistot
 
 ### Komponentit
@@ -16,7 +16,7 @@ Esimerkiksi IoT kiinteistöhallinnassa: IoT mahdollistaa kiinteistön seurannan 
 ### Palvelut
 #### Sääasema käyttää Microsoft Azure pilvipalveluja.
 *Hyötyjä: Joustava resurssien käyttö, luotettavuus
-Haittoja: Pilvipalvelun tarjoaja voi nähdä tietosi, tarjoajat näkee, mitä teet ja voivat luoda sinusta profiilin.*
+Haittoja: Pilvipalvelun tarjoaja voi nähdä tietosi ja tarjoajat näkee, mitä teet ja voivat luoda sinusta profiilin.*
 ### Ohjelmointi
 
 ### Toiminta
