@@ -12,17 +12,17 @@ Esimerkiksi IoT kiinteistöhallinnassa: IoT mahdollistaa kiinteistön seurannan 
 ### Laitteistot
 
 ### Komponentit
-
+*Particle Photon, DHT11 sensori, breakboard ja johtoja.*
 ### Palvelut
-#### Sääasema käyttää Microsoft Azure pilvipalveluja.
-*Hyötyjä: Joustava resurssien käyttö, luotettavuus
-Haittoja: Pilvipalvelun tarjoaja voi nähdä tietosi ja tarjoajat näkee, mitä teet ja voivat luoda sinusta profiilin.*
+  #### Sääasema käyttää Microsoft Azure pilvipalveluja.
+  *Hyötyjä: Joustava resurssien käyttö, luotettavuus
+  Haittoja: Pilvipalvelun tarjoaja voi nähdä tietosi ja tarjoajat näkevät, mitä teet ja voivat täten luoda sinusta profiilin.*
 ### Ohjelmointi
 
 ### Toiminta
 
 ## Käytetyt kehitysympäristöt
-*Azure, Replit, GitHub
+*Microsoft Azure, Replit, GitHub*
 ## Termihakemisto
 
 ## Viitteet

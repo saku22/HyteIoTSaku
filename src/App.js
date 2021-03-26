@@ -4,6 +4,7 @@ import { Chart } from "react-google-charts"
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import Portfolio from './components/Portfolio';
+import Github from './components/Github';
 import {BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 
