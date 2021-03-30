@@ -4,7 +4,6 @@ import { Chart } from "react-google-charts"
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import Portfolio from './components/Portfolio';
-import Github from './components/Github';
 import {BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 
@@ -67,6 +66,8 @@ let chartTempData = [
       <Portfolio />
     </Route>
     <Route>
+
+    <div className="chartDiv">
       {rows()}
       <div style={{ display: 'flex'}}>
         <Chart
@@ -99,6 +100,8 @@ data={chartHumData}
             vAxis: { minValue: 0 }
              }}
           />
+          <a href="https://github.com/saku22/HyteIoTSaku/blob/master/README.md"target="_BLANK">Readme linkki</a>
+          </div>
       </div>
       </Route>
       </Switch>
