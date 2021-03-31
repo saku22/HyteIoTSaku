@@ -120,5 +120,5 @@ Esimerkiksi IoT kiinteistöhallinnassa: IoT mahdollistaa kiinteistön seurannan 
 #### DHT11: 
 -*https://www.mouser.com/datasheet/2/758/DHT11-Technical-Data-Sheet-Translated-Version-1143054.pdf*
 #### IOT: 
--*https://youtu.be/2p7V_6WzVOw?list=PLtbOrywM-BA8qzTn5fkzhlcaR3d92HYO7
+*-https://youtu.be/2p7V_6WzVOw?list=PLtbOrywM-BA8qzTn5fkzhlcaR3d92HYO7
 -https://youtu.be/nzg_x1-EFpc?list=PLtbOrywM-BA8qzTn5fkzhlcaR3d92HYO7*
