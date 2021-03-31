@@ -105,9 +105,9 @@ Esimerkiksi IoT kiinteistöhallinnassa: IoT mahdollistaa kiinteistön seurannan 
 -CSharp 2 rakentaa tallennetusta datasta JSON rajapinnan:*
 ![CSharp 2](public/CSharp2.png)
 ### Käyttöliittymä Azurella
-*-Käyttölittymä on tehty Reactilla, joka työntää datan Azuren Static Web Appiin.*
+*-Käyttölittymä on tehty Reactilla. Koodit tallennetaan versionhallintaan, josta on CI/CD Azuren Static Web Appiin.*
 ## Käytetyt kehitysympäristöt
-*Microsoft Azure, Replit, GitHub*
+*Microsoft Azure, Replit, GitHub, Particle Console*
 ## Termihakemisto
 *-Protokolla: Määrittelee tai mahdollistaa laitteiden tai ohjelmien väliset yhteydet.
 -Web IDE: Integrated Development Environment
