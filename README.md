@@ -10,7 +10,7 @@ Esimerkiksi IoT kiinteistöhallinnassa: IoT mahdollistaa kiinteistön seurannan 
  -Analytiikka, millä hyödynnetään kerättyä dataa tavalla tai toisella.*
 ![Kaavio](public/toimintakaavio.png)
 ### Laitteistot
-
+*-Particle Photonin kehityskortti muuttaa sähköisen suureen digitaaliseen muotoon. Firmware ohjelman ansiosta kehityskortin prosessori osaa kirjoittaa saamansa datan asteina ja prosentteina konsoliin, josta ne lähtevät Webhookilla eteenpäin. Photonin laiteohjelmisto kirjoitetaan Web IDE:llä.*
 ### Komponentit
 *Particle Photon, DHT11 sensori, breakboard ja johtoja.*
 ### Anturit
@@ -23,14 +23,99 @@ Esimerkiksi IoT kiinteistöhallinnassa: IoT mahdollistaa kiinteistön seurannan 
 ![DHT11](public/dht11.png)
 ### Palvelut
   #### Sääasema käyttää Microsoft Azure pilvipalveluja.
-  *Hyötyjä: Joustava resurssien käyttö, luotettavuus
-  Haittoja: Pilvipalvelun tarjoaja voi nähdä tietosi ja tarjoajat näkevät, mitä teet ja voivat täten luoda sinusta profiilin.*
+  *-Hyötyjä: Joustava resurssien käyttö, luotettavuus
+  -Haittoja: Pilvipalvelun tarjoaja voi nähdä tietosi ja tarjoajat näkevät, mitä teet ja voivat täten luoda sinusta profiilin.*
 ### Ohjelmointi
+*-Käyttöliittymä ohjelmoidaan Reactilla: HTML, CSS ja Javascript.
+-Particle Photonin koodi, joka hakee ja kerää datan:*
 
-### Toiminta
+>#include <Adafruit_DHT_Particle.h>
 
+>#define DHTPIN D0
+>#define DHTTYPE DHT11
+
+>double temperature;
+>double humidity;
+
+>int led = D6; 
+
+>DHT dht(DHTPIN, DHTTYPE);
+
+>// setup() runs once, when the device is first turned on.
+>void setup() {
+  
+ > dht.begin();
+  >Particle.variable("temperature", temperature);
+  >Particle.variable("humidity", humidity);
+  >pinMode(led, OUTPUT); 
+  
+   >Particle.function("led",ledToggle);
+  
+  >digitalWrite(led, LOW);
+
+ 
+  
+  >Particle.subscribe("hook-response/temperatureSaku", myHandler, MY_DEVICES);
+  
+>}
+
+>// loop() runs over and over again, as quickly as it can execute.
+>void loop() {
+
+  >float h = dht.getHumidity();
+  >float t = dht.getTempCelcius();
+  >temperature=t;
+  >humidity=h;
+
+  >if(isnan(h) || isnan(t)) {
+    >Serial.println("Failed to read from DHT sensor!");
+    >return;
+  >}
+  
+  >//String data = String(10);
+  >String data = String::format("{\"Hum(\%)\": %4.2f, \"Temp(°C)\": %4.2f, \"DP(°C)\": >%4.2f, \"HI(°C)\": %4.2f, \"Light\": %d}", h, t);
+  >// Trigger the integration
+  >Particle.publish("temperatureSaku", data, PRIVATE);
+  
+  >delay(6000);
+
+>}
+
+>int ledToggle(String command) {
+
+   > if (command=="on") {
+        >digitalWrite(led,HIGH);
+       > return 1;
+    >}
+    >else if (command=="off") {
+        >digitalWrite(led,LOW);
+        >return 0;
+    >}
+    >else {
+        >return -1;
+    >}
+}
+>void myHandler(const char *event, const char *data) {
+ > // Handle the integration response
+>}
+          
+
+*-CSharp 1 tallentaa anturin datan tietovarastoon:
+![CSharp 1](public/CSharp1.png)
+-CSharp 2 rakentaa tallennetusta datasta JSON rajapinnan:*
+![CSharp 2](public/CSharp2.png)
+### Käyttöliittymä Azurella
+*-Käyttölittymä on tehty Reactilla, joka työntää datan Azuren Static Web Appiin.*
 ## Käytetyt kehitysympäristöt
 *Microsoft Azure, Replit, GitHub*
 ## Termihakemisto
-
-## Viitteet
+*-Protokolla: Määrittelee tai mahdollistaa laitteiden tai ohjelmien väliset yhteydet.
+-Web IDE: Integrated Development Environment
+-HTTPS: Hypertext Transfer Protocol Secure
+-CoAP: Constrained application protocol
+-AES: Advanced Encryption Standard*
+## Lähteet
+*-https://www.dna.fi/yrityksille/aistien-internet-podcast
+-https://www.mouser.com/datasheet/2/758/DHT11-Technical-Data-Sheet-Translated-Version-1143054.pdf
+-https://youtu.be/2p7V_6WzVOw?list=PLtbOrywM-BA8qzTn5fkzhlcaR3d92HYO7
+-https://youtu.be/nzg_x1-EFpc?list=PLtbOrywM-BA8qzTn5fkzhlcaR3d92HYO7*
